@@ -1,9 +1,15 @@
 package br.com.dnl.agrogpt.api.models;
 
+import br.com.dnl.agrogpt.api.controllers.ProblemaController;
+import br.com.dnl.agrogpt.api.controllers.ProducaoCultivoController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.EntityModel;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Data
 @Entity
@@ -25,6 +31,15 @@ public class ProducaoCultivo {
 
     @Column(name = "qnt_prod_cultivo")
     private Integer quantidade;
+
+    public EntityModel<ProducaoCultivo> toEntityModel() {
+        return EntityModel.of(
+                this,
+                linkTo(methodOn(ProducaoCultivoController.class).listAll(null, Pageable.unpaged())).withRel("all"),
+                linkTo(methodOn(ProducaoCultivoController.class).getById(id)).withSelfRel(),
+                linkTo(methodOn(ProducaoCultivoController.class).delete(id)).withRel("delete")
+        );
+    }
 
     //private Propriedade propriedade;
 }
