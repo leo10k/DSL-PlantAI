@@ -6,10 +6,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
+
+import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -18,6 +21,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "dnl_tb_propriedade")
+@Builder
 public class Propriedade {
 
     @Column(name = "id_propriedade")
@@ -44,6 +48,17 @@ public class Propriedade {
     @NotBlank
     private String descricaoClima;
 
+    //private Empreendedor empreendedor;
+
+    @OneToOne
+    private Endereco endereco;
+
+    @OneToMany
+    private List<ProducaoCultivo> producaoCultivo;
+
+    @OneToOne
+    private Estoque estoque;
+
     public EntityModel<Propriedade> toEntityModel() {
         return EntityModel.of(
                 this,
@@ -53,8 +68,5 @@ public class Propriedade {
         );
     }
 
-    //private Empreendedor empreendedor;
-    //private Endereco endereco;
-    //private ProducaoCultivo producaoCultivo;
-    //private Estoque;
+
 }

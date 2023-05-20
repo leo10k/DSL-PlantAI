@@ -35,6 +35,8 @@ public class Pagamento {
     @NotNull
     private Double preco;
 
+    //private Empresa empresa;
+
     public EntityModel<Pagamento> toEntityModel() {
         return EntityModel.of(
                 this,
@@ -43,6 +45,4 @@ public class Pagamento {
                 linkTo(methodOn(PagamentoController.class).delete(id)).withRel("delete")
         );
     }
-
-    //private Empresa empresa;
 }

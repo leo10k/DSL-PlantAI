@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.hateoas.EntityModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Data
@@ -21,6 +23,7 @@ import java.time.LocalDate;
 @Table(name = "dnl_tb_empreendedor")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Empreendedor {
 
     @Column(name = "id_empreendedor")
@@ -48,6 +51,21 @@ public class Empreendedor {
     @NotNull
     private LocalDate dataCadastro;
 
+    @OneToOne
+    private Empresa empresa;
+
+    @OneToMany
+    private List<Problema> problema;
+
+    @OneToOne
+    private Genero genero;
+
+    @OneToOne
+    private Telefone telefone;
+
+    @OneToMany
+    private List<Propriedade> propriedade;
+
     public EntityModel<Empreendedor> toEntityModel() {
         return EntityModel.of(
                 this,
@@ -56,11 +74,4 @@ public class Empreendedor {
                 linkTo(methodOn(EmpreendedorController.class).delete(id)).withRel("delete")
         );
     }
-
-    //private Empresa empresa;
-    //private Problema problema;
-    //private Genero genero;
-    //private Telefone telefone;
-    //private Propriedade;
-    
 }

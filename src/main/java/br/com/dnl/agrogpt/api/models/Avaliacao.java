@@ -31,7 +31,6 @@ public class Avaliacao {
     @NotNull
     private LocalDate dataAvalicao;
 
-
     //@Lob
     @NotNull
     @Column(name = "img_avaliacao", nullable = false)
@@ -46,6 +45,8 @@ public class Avaliacao {
     @NotBlank
     private String solucao;
 
+    //private Problema problema;
+
     public EntityModel<Avaliacao> toEntityModel() {
         return EntityModel.of(
                 this,
@@ -54,8 +55,4 @@ public class Avaliacao {
                 linkTo(methodOn(AvaliacaoController.class).delete(id)).withRel("delete")
         );
     }
-
-
-    //private Problema problema;
-
 }

@@ -36,6 +36,8 @@ public class ProducaoCultivo {
     @Column(name = "qnt_prod_cultivo")
     private Integer quantidade;
 
+    //private Propriedade propriedade;
+
     public EntityModel<ProducaoCultivo> toEntityModel() {
         return EntityModel.of(
                 this,
@@ -44,6 +46,4 @@ public class ProducaoCultivo {
                 linkTo(methodOn(ProducaoCultivoController.class).delete(id)).withRel("delete")
         );
     }
-
-    //private Propriedade propriedade;
 }

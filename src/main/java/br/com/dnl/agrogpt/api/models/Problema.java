@@ -1,10 +1,10 @@
 package br.com.dnl.agrogpt.api.models;
 
-import br.com.dnl.agrogpt.api.controllers.PagamentoController;
 import br.com.dnl.agrogpt.api.controllers.ProblemaController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "dnl_tb_problema")
+@Builder
 public class Problema {
 
     @Column(name = "id_problema")
@@ -32,6 +33,11 @@ public class Problema {
     @NotBlank
     private String descricao;
 
+    //private Empreendedor empreendedor;
+
+    @OneToOne
+    private Avaliacao avaliacao;
+
     public EntityModel<Problema> toEntityModel() {
         return EntityModel.of(
                 this,
@@ -41,6 +47,4 @@ public class Problema {
         );
     }
 
-    //private Empreendedor empreendedor;
-    //private Avaliacao avaliacao;
 }

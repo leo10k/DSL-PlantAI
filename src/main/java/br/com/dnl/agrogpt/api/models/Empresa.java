@@ -46,6 +46,12 @@ public class Empresa {
     @NotBlank
     private String status;
 
+    //private Empreendedor empreendedor;
+
+    @OneToOne
+    private Pagamento pagamento;
+
+
     public EntityModel<Empresa> toEntityModel() {
         return EntityModel.of(
                 this,
@@ -55,8 +61,4 @@ public class Empresa {
 
         );
     }
-
-    //private Empresa empresa;
-    //private Pagamento pagamento;
-
 }
