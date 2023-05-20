@@ -3,6 +3,7 @@ package br.com.dnl.agrogpt.api.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "dnl_tb_genero")
+@Builder
 public class Genero {
 
     @Column(name = "id_genero")

@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "dnl_tb_prod_cultivo")
+@Builder
 public class ProducaoCultivo {
 
     @Column(name = "id_prod_cultivo")
