@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PropriedadeRepository extends JpaRepository<Propriedade, Long> {
-    Page<Propriedade> findByNameContaining(String nome, Pageable pageable);
+    Page<Propriedade> findByNomeContaining(String nome, Pageable pageable);
 }

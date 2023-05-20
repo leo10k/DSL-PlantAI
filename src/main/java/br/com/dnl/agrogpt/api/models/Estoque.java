@@ -2,10 +2,14 @@ package br.com.dnl.agrogpt.api.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "dnl_tb_estoque")
 public class Estoque {
 

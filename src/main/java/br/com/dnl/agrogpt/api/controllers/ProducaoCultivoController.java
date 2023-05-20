@@ -33,7 +33,7 @@ public class ProducaoCultivoController {
     public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String nome, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
         Page<ProducaoCultivo> producaoCultivos = (nome == null)?
                 producaoCultivoRepository.findAll(pageable):
-                producaoCultivoRepository.findByNameContaining(nome, pageable);
+                producaoCultivoRepository.findByNomeContaining(nome, pageable);
 
         return assembler.toModel(producaoCultivos.map(ProducaoCultivo::toEntityModel));
     }

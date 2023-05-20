@@ -4,7 +4,9 @@ import br.com.dnl.agrogpt.api.controllers.PagamentoController;
 import br.com.dnl.agrogpt.api.controllers.ProblemaController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
@@ -12,6 +14,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "dnl_tb_problema")
 public class Problema {
 

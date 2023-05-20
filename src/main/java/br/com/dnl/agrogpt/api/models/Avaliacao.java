@@ -5,16 +5,20 @@ import br.com.dnl.agrogpt.api.controllers.EmpreendedorController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "dnl_tb_avaliacao")
 public class Avaliacao {
 
@@ -23,14 +27,16 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nm_emp", length = 80, nullable = false)
-    @NotBlank
-    private Date dataAvalicao;
-
+    @Column(name = "dt_avaliacao", length = 80, nullable = false)
     @NotNull
-    @Lob
+    private LocalDate dataAvalicao;
+
+
+    //@Lob
+    @NotNull
     @Column(name = "img_avaliacao", nullable = false)
-    private byte[] imagem;
+    //private byte[] imagem;
+    private String imagem;
 
     @Column(name = "st_avaliacao", length = 30, nullable = false)
     @NotBlank

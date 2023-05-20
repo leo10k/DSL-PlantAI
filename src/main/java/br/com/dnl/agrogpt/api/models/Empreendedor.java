@@ -38,7 +38,7 @@ public class Empreendedor {
 
     @Column(name = "nr_cnpj", nullable = false)
     @NotNull
-    private Integer cnpj;
+    private Long cnpj;
 
     @Column(name = "dt_nascimento", nullable = false)
     @NotNull

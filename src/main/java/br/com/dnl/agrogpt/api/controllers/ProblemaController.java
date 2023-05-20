@@ -35,7 +35,7 @@ public class ProblemaController {
     public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String nome, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
         Page<Problema> problemas = (nome == null)?
                 problemaRepository.findAll(pageable):
-                problemaRepository.findByNameContaining(nome, pageable);
+                problemaRepository.findByNomeContaining(nome, pageable);
 
         return assembler.toModel(problemas.map(Problema::toEntityModel));
     }

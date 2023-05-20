@@ -33,7 +33,7 @@ public class PropriedadeController {
     public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String nome, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
         Page<Propriedade> propriedades = (nome == null)?
                 propriedadeRepository.findAll(pageable):
-                propriedadeRepository.findByNameContaining(nome, pageable);
+                propriedadeRepository.findByNomeContaining(nome, pageable);
 
         return assembler.toModel(propriedades.map(Propriedade::toEntityModel));
     }

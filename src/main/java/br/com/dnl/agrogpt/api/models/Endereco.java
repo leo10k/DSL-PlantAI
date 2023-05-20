@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "dnl_tb_endereco")
 public class Endereco {
 

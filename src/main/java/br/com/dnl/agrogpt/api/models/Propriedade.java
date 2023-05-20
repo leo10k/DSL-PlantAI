@@ -5,7 +5,9 @@ import br.com.dnl.agrogpt.api.controllers.PropriedadeController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
@@ -13,6 +15,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "dnl_tb_propriedade")
 public class Propriedade {
 
@@ -27,10 +31,10 @@ public class Propriedade {
 
     @Column(name = "lt_inicial", nullable = false)
     @NotNull
-    private Integer loteInicial;
+    private Double loteInicial;
 
     @Column(name = "lt_atual")
-    private Integer loteAtual;
+    private Double loteAtual;
 
     @Column(name = "ds_solo", length = 200, nullable = false)
     @NotBlank

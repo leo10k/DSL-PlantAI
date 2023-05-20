@@ -4,16 +4,21 @@ import br.com.dnl.agrogpt.api.controllers.AvaliacaoController;
 import br.com.dnl.agrogpt.api.controllers.PagamentoController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "dnl_tb_pagamento")
 public class Pagamento {
 
@@ -23,11 +28,11 @@ public class Pagamento {
     private Long id;
 
     @Column(name = "dt_pagamento", nullable = false)
-    @NotBlank
-    private Date data;
+    @NotNull
+    private LocalDate data;
 
     @Column(name = "preco_pagamento", nullable = false)
-    @NotBlank
+    @NotNull
     private Double preco;
 
     public EntityModel<Pagamento> toEntityModel() {
