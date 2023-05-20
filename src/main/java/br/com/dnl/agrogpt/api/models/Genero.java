@@ -27,6 +27,7 @@ public class Genero {
     @Column(name = "ds_genero", length = 20, nullable = false)
     private String pronome;
 
-    //private Empreendedor empreendedor;
+    @OneToOne
+    private Empreendedor empreendedor;
 
 }

@@ -48,15 +48,16 @@ public class Propriedade {
     @NotBlank
     private String descricaoClima;
 
-    //private Empreendedor empreendedor;
-
     @OneToOne
+    private Empreendedor empreendedor;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "propriedade")
     private List<ProducaoCultivo> producaoCultivo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "propriedade")
     private Estoque estoque;
 
     public EntityModel<Propriedade> toEntityModel() {

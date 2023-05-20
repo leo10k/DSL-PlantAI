@@ -46,7 +46,8 @@ public class Empresa {
     @NotBlank
     private String status;
 
-    //private Empreendedor empreendedor;
+    @OneToOne
+    private Empreendedor empreendedor;
 
     @OneToOne
     private Pagamento pagamento;

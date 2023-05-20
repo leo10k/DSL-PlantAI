@@ -32,6 +32,7 @@ public class Telefone {
     @NotNull
     private Long telefone;
 
-    //private Empreendedor empreendedor;
+    @OneToOne
+    private Empreendedor empreendedor;
 
 }

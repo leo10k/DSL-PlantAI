@@ -51,19 +51,19 @@ public class Empreendedor {
     @NotNull
     private LocalDate dataCadastro;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "empreendedor")
     private Empresa empresa;
 
-    @OneToMany
+    @OneToMany(mappedBy = "empreendedor")
     private List<Problema> problema;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "empreendedor")
     private Genero genero;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "empreendedor")
     private Telefone telefone;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empreendedor")
     private List<Propriedade> propriedade;
 
     public EntityModel<Empreendedor> toEntityModel() {

@@ -38,7 +38,8 @@ public class ProducaoCultivo {
     @Column(name = "qnt_prod_cultivo")
     private Integer quantidade;
 
-    //private Propriedade propriedade;
+    @ManyToOne
+    private Propriedade propriedade;
 
     public EntityModel<ProducaoCultivo> toEntityModel() {
         return EntityModel.of(

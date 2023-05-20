@@ -33,7 +33,8 @@ public class Problema {
     @NotBlank
     private String descricao;
 
-    //private Empreendedor empreendedor;
+    @ManyToOne
+    private Empreendedor empreendedor;
 
     @OneToOne
     private Avaliacao avaliacao;
