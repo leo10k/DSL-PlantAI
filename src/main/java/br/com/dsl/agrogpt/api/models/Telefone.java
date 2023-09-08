@@ -33,6 +33,6 @@ public class Telefone {
     private Long telefone;
 
     @OneToOne
-    private Cliente empreendedor;
+    private Cliente cliente;
 
 }

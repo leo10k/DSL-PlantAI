@@ -36,7 +36,7 @@ public class Problema {
     private String descricao;
 
     @ManyToOne
-    private Cliente empreendedor;
+    private Cliente cliente;
 
     @OneToOne
     private Avaliacao avaliacao;

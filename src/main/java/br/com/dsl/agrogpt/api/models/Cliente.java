@@ -59,8 +59,8 @@ public class Cliente {
     private LocalDate dataCadastro;
 
     @Column(name = "st_cliente", nullable = false)
-    @NotBlank
-    private boolean status;
+    @NotNull
+    private char status;
 
     @OneToMany(mappedBy = "cliente")
     private List<Problema> problema;

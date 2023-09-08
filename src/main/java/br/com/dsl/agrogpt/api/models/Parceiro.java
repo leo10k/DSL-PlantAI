@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
-import java.util.List;
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -50,9 +48,8 @@ public class Parceiro {
     @Size(max = 255)
     private String site;
 
-    //TODO {trocar isso e tirar duvida com samuel}
-    @OneToMany(mappedBy = "parceiro")
-    private List<Avaliacao> avaliacao;
+    @OneToOne(mappedBy = "parceiro")
+    private Avaliacao avaliacao;
 
     public EntityModel<Parceiro> toEntityModel() {
         return EntityModel.of(

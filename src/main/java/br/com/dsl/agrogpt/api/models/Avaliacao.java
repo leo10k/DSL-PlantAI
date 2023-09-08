@@ -48,8 +48,7 @@ public class Avaliacao {
     @NotBlank
     private String solucao;
 
-    //TODO {trocar isso e tirar duvida com samuel}
-    @ManyToOne
+    @OneToOne
     private Parceiro parceiro;
 
     public EntityModel<Avaliacao> toEntityModel() {
