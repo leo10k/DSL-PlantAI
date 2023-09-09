@@ -2,7 +2,9 @@ package br.com.dsl.agrogpt.api.controllers;
 
 import br.com.dsl.agrogpt.api.exception.RestNotFoundException;
 import br.com.dsl.agrogpt.api.models.Cliente;
+import br.com.dsl.agrogpt.api.models.Credencial;
 import br.com.dsl.agrogpt.api.repository.ClienteRepository;
+import br.com.dsl.agrogpt.api.service.TokenService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +16,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +36,15 @@ public class ClienteController {
     @Autowired
     PagedResourcesAssembler<Object> assembler;
 
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    TokenService tokenService;
+
+    @Autowired
+    AuthenticationManager manager;
+
     @GetMapping
     public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String nome, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
         Page<Cliente> clientes = (nome == null)?
@@ -38,6 +52,22 @@ public class ClienteController {
                 clienteRepository.findByNameContaining(nome, pageable);
 
         return assembler.toModel(clientes.map(Cliente::toEntityModel));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Cliente> registrer(@RequestBody @Valid Cliente cliente){
+        cliente.setPassword(encoder.encode(cliente.getPassword()));
+        clienteRepository.save(cliente);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
+
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial){
+        manager.authenticate(credencial.toAuthentication());
+        var token = tokenService.generateToken(credencial);
+        return ResponseEntity.ok(token);
     }
 
     @GetMapping("{id}")

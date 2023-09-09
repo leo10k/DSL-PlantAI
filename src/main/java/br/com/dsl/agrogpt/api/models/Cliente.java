@@ -6,14 +6,14 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Pageable;
+import lombok.*;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -23,10 +23,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Data
 @Entity
 @Table(name = "dsl_tb_cliente")
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Cliente {
+public class Cliente implements UserDetails {
 
     @Column(name = "id_cliente")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,11 +69,47 @@ public class Cliente {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Telefone telefone;
 
+    private String password;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USUARIO"));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
     public EntityModel<Cliente> toEntityModel() {
         return EntityModel.of(
                 this,
-                linkTo(methodOn(ClienteController.class).listAll(null, Pageable.unpaged())).withRel("all"),
+                //linkTo(methodOn(ClienteController.class).listAll(null, Pageable.unpaged())).withRel("all"),
                 linkTo(methodOn(ClienteController.class).getById(id)).withSelfRel(),
                 linkTo(methodOn(ClienteController.class).delete(id)).withRel("delete")
         );
