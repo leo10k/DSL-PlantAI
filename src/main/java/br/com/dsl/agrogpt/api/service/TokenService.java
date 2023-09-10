@@ -22,7 +22,7 @@ public class TokenService {
     @Value("${jwt.secret}")
     String secret;
 
-    public Token generateToken(Credencial credencial) {
+    public Token generateToken(Credencial credencial, Long userId) {
         Algorithm alg = Algorithm.HMAC256(secret);
         var token = JWT.create()
                 .withSubject(credencial.email())
@@ -30,7 +30,7 @@ public class TokenService {
                 .withIssuer("PlantAI")
                 .sign(alg);
 
-        return new Token(token, "JWT", "Bearer");
+        return new Token(token, "JWT", "Bearer", userId);
     }
 
     public Cliente valideAndGetUserBy(String token) {

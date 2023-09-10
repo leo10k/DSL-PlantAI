@@ -48,6 +48,10 @@ public class Avaliacao {
     @NotBlank
     private String solucao;
 
+    @Column(name = "ds_porcentagem", length = 150, nullable = false)
+    @NotBlank
+    private String porcentagem;
+
     @OneToOne
     private Parceiro parceiro;
 

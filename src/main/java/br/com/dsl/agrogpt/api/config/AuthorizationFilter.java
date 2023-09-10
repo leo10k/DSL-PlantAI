@@ -27,9 +27,13 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         var token = getToken(request);
 
         // se for valido, autenticar
-        if (token != null){
+        if (token != null) {
             var cliente = tokenService.valideAndGetUserBy(token);
-            Authentication auth = new UsernamePasswordAuthenticationToken(cliente.getEmail(), null, cliente.getAuthorities() );
+            Authentication auth = new UsernamePasswordAuthenticationToken(
+                    cliente.getEmail(),
+                    null,
+                    cliente.getAuthorities()
+            );
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
 
@@ -47,5 +51,4 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         return header.replace(prefix, "");
 
     }
-
 }

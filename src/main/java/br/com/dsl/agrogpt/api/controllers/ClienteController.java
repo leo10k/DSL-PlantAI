@@ -5,6 +5,8 @@ import br.com.dsl.agrogpt.api.models.Cliente;
 import br.com.dsl.agrogpt.api.models.Credencial;
 import br.com.dsl.agrogpt.api.repository.ClienteRepository;
 import br.com.dsl.agrogpt.api.service.TokenService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Transactional
+//@Tag(name = "auth")
+@SecurityRequirement(name = "bearer-key")
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
@@ -60,13 +64,13 @@ public class ClienteController {
         clienteRepository.save(cliente);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
-
     }
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial){
         manager.authenticate(credencial.toAuthentication());
-        var token = tokenService.generateToken(credencial);
+        var user = clienteRepository.findByEmail(credencial.email()).orElseThrow();
+        var token = tokenService.generateToken(credencial, user.getId());
         return ResponseEntity.ok(token);
     }
 
@@ -106,5 +110,4 @@ public class ClienteController {
     private Cliente getCliente(Long id) {
         return clienteRepository.findById(id).orElseThrow(() -> new RestNotFoundException("cliente não encontrado!"));
     }
-
 }

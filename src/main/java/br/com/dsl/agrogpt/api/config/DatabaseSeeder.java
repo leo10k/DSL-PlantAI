@@ -47,11 +47,11 @@ public class DatabaseSeeder implements CommandLineRunner {
         Parceiro par2 = new Parceiro(null, "Parceiro 2", "descricao", "parceiro2@gmail.com", "parceiro2.com.br", null);
         parceiroRepository.saveAll(List.of(par1, par2));
 
-        Avaliacao ava1 = new Avaliacao(null, LocalDate.of(2021, 1, 17), "img1.png", "Concluido", "Solucionado", null);
-        Avaliacao ava2 = new Avaliacao(null, LocalDate.of(2020, 3, 24), "img2.png", "Concluido", "Solucionado", null);
-        Avaliacao ava3 = new Avaliacao(null, LocalDate.of(2022, 5, 9), "img3.png", "Pendente", "Não solucionado", null);
-        Avaliacao ava4 = new Avaliacao(null, LocalDate.of(2023, 7, 1), "img4.png", "Concluido", "Solucionado", null);
-        Avaliacao ava5 = new Avaliacao(null, LocalDate.of(2021, 9, 10), "img5.png", "Pendente", "Não solucionado", null);
+        Avaliacao ava1 = new Avaliacao(null, LocalDate.of(2021, 1, 17), "img1.png", "Concluido", "Solucionado", "95%", null);
+        Avaliacao ava2 = new Avaliacao(null, LocalDate.of(2020, 3, 24), "img2.png", "Concluido", "Solucionado", "95%", null);
+        Avaliacao ava3 = new Avaliacao(null, LocalDate.of(2022, 5, 9), "img3.png", "Pendente", "Não solucionado", "95%", null);
+        Avaliacao ava4 = new Avaliacao(null, LocalDate.of(2023, 7, 1), "img4.png", "Concluido", "Solucionado", "95%", null);
+        Avaliacao ava5 = new Avaliacao(null, LocalDate.of(2021, 9, 10), "img5.png", "Pendente", "Não solucionado", "95%", null);
         avaliacaoRepository.saveAll(List.of(ava1, ava2, ava3, ava4, ava5));
 
         Problema prob1 = new Problema(null, "Problema no solo", "O solo esta com falta de agua.", null,ava1);
