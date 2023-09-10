@@ -32,7 +32,7 @@ public class Avaliacao {
 
     @Column(name = "dt_avaliacao", length = 80, nullable = false)
     @NotNull
-    private LocalDate dataAvalicao;
+    private LocalDate dataAvaliacao;
 
     //@Lob
     @NotNull

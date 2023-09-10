@@ -1,5 +1,6 @@
 package br.com.dsl.agrogpt.api.config;
 
+import br.com.dsl.agrogpt.api.repository.ClienteRepository;
 import br.com.dsl.agrogpt.api.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,6 +21,9 @@ public class AuthorizationFilter extends OncePerRequestFilter {
     @Autowired
     TokenService tokenService;
 
+    @Autowired
+    ClienteRepository clienteRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
         throws ServletException, IOException {
@@ -28,6 +32,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
         // se for valido, autenticar
         if (token != null) {
+            clienteRepository.findByEmail("jogo@gmail.com");
             var cliente = tokenService.valideAndGetUserBy(token);
             Authentication auth = new UsernamePasswordAuthenticationToken(
                     cliente.getEmail(),

@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-    Optional<Cliente> findByEmail(String username);
+    Optional<Cliente> findByEmail(String email);
     Page<Cliente> findByNameContaining(String nome, Pageable pageable);
 }

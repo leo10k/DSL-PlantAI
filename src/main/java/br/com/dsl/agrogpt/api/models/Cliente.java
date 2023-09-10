@@ -63,7 +63,7 @@ public class Cliente implements UserDetails {
     @NotNull
     private char status;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Problema> problema;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")

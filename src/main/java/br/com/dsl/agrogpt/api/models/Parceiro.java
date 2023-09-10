@@ -1,6 +1,6 @@
 package br.com.dsl.agrogpt.api.models;
 
-import br.com.dsl.agrogpt.api.controllers.ClienteController;
+import br.com.dsl.agrogpt.api.controllers.ParceiroController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -54,9 +54,9 @@ public class Parceiro {
     public EntityModel<Parceiro> toEntityModel() {
         return EntityModel.of(
                 this,
-                linkTo(methodOn(ClienteController.class).listAll(null, Pageable.unpaged())).withRel("all"),
-                linkTo(methodOn(ClienteController.class).getById(id)).withSelfRel(),
-                linkTo(methodOn(ClienteController.class).delete(id)).withRel("delete")
+                linkTo(methodOn(ParceiroController.class).listAll(null, Pageable.unpaged())).withRel("all"),
+                linkTo(methodOn(ParceiroController.class).getById(id)).withSelfRel(),
+                linkTo(methodOn(ParceiroController.class).delete(id)).withRel("delete")
         );
     }
 

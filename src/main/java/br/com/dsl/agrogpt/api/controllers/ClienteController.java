@@ -6,7 +6,6 @@ import br.com.dsl.agrogpt.api.models.Credencial;
 import br.com.dsl.agrogpt.api.repository.ClienteRepository;
 import br.com.dsl.agrogpt.api.service.TokenService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,17 +77,6 @@ public class ClienteController {
     public EntityModel<Cliente> getById(@PathVariable Long id) {
         logger.info("Buscando cliente com id: " + id );
         return getCliente(id).toEntityModel();
-    }
-
-    @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid Cliente cliente) {
-        logger.info("Cadastrando o cliente!: " + cliente);
-        clienteRepository.save(cliente);
-        return ResponseEntity
-                .created(cliente.toEntityModel()
-                .getRequiredLink("self")
-                .toUri())
-                .body(cliente.toEntityModel());
     }
 
     @PutMapping("{id}")
