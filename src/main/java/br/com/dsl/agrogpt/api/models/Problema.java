@@ -44,7 +44,7 @@ public class Problema {
     public EntityModel<Problema> toEntityModel() {
         return EntityModel.of(
                 this,
-                WebMvcLinkBuilder.linkTo(methodOn(ProblemaController.class).listAll(null, Pageable.unpaged())).withRel("all"),
+                //WebMvcLinkBuilder.linkTo(methodOn(ProblemaController.class).listAll(null, Pageable.unpaged())).withRel("all"),
                 linkTo(methodOn(ProblemaController.class).getById(id)).withSelfRel(),
                 linkTo(methodOn(ProblemaController.class).delete(id)).withRel("delete")
         );

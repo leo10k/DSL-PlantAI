@@ -17,6 +17,8 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/avaliacoes")
 public class AvaliacaoController {
@@ -29,13 +31,19 @@ public class AvaliacaoController {
     @Autowired
     PagedResourcesAssembler<Object> assembler;
 
-    @GetMapping
-    public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String status, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
-        Page<Avaliacao> avaliacoes = (status == null)?
-                avaliacaoRepository.findAll(pageable):
-                avaliacaoRepository.findByStatusContaining(status, pageable);
+//    @GetMapping
+//    public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String status, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
+//        Page<Avaliacao> avaliacoes = (status == null)?
+//                avaliacaoRepository.findAll(pageable):
+//                avaliacaoRepository.findByStatusContaining(status, pageable);
+//
+//        return assembler.toModel(avaliacoes.map(Avaliacao::toEntityModel));
+//    }
 
-        return assembler.toModel(avaliacoes.map(Avaliacao::toEntityModel));
+    @GetMapping
+    public List<Avaliacao> listAll() {
+        logger.info("consultando avaliação");
+        return avaliacaoRepository.findAll();
     }
 
     @GetMapping("{id}")

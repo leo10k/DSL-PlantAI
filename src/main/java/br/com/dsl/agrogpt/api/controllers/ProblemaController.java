@@ -1,6 +1,7 @@
 package br.com.dsl.agrogpt.api.controllers;
 
 import br.com.dsl.agrogpt.api.exception.RestNotFoundException;
+import br.com.dsl.agrogpt.api.models.Avaliacao;
 import br.com.dsl.agrogpt.api.models.Problema;
 import br.com.dsl.agrogpt.api.repository.ProblemaRepository;
 import jakarta.validation.Valid;
@@ -17,6 +18,8 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/problemas")
 public class ProblemaController {
@@ -29,13 +32,19 @@ public class ProblemaController {
     @Autowired
     PagedResourcesAssembler<Object> assembler;
 
-    @GetMapping
-    public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String nome, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
-        Page<Problema> problemas = (nome == null)?
-                problemaRepository.findAll(pageable):
-                problemaRepository.findByNomeContaining(nome, pageable);
+//    @GetMapping
+//    public PagedModel<EntityModel<Object>> listAll(@RequestParam(required = false) String nome, @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
+//        Page<Problema> problemas = (nome == null)?
+//                problemaRepository.findAll(pageable):
+//                problemaRepository.findByNomeContaining(nome, pageable);
+//
+//        return assembler.toModel(problemas.map(Problema::toEntityModel));
+//    }
 
-        return assembler.toModel(problemas.map(Problema::toEntityModel));
+    @GetMapping
+    public List<Problema> listAll() {
+        logger.info("consultando problemas");
+        return problemaRepository.findAll();
     }
 
     @GetMapping("{id}")

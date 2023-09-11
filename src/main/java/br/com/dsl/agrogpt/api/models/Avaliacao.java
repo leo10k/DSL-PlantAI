@@ -58,7 +58,7 @@ public class Avaliacao {
     public EntityModel<Avaliacao> toEntityModel() {
         return EntityModel.of(
                 this,
-                WebMvcLinkBuilder.linkTo(methodOn(AvaliacaoController.class).listAll(null, Pageable.unpaged())).withRel("all"),
+                //WebMvcLinkBuilder.linkTo(methodOn(AvaliacaoController.class).listAll(null, Pageable.unpaged())).withRel("all"),
                 linkTo(methodOn(AvaliacaoController.class).getById(id)).withSelfRel(),
                 linkTo(methodOn(AvaliacaoController.class).delete(id)).withRel("delete")
         );
