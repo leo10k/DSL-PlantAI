@@ -32,7 +32,6 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
         // se for valido, autenticar
         if (token != null) {
-            clienteRepository.findByEmail("jogo@gmail.com");
             var cliente = tokenService.valideAndGetUserBy(token);
             Authentication auth = new UsernamePasswordAuthenticationToken(
                     cliente.getEmail(),
