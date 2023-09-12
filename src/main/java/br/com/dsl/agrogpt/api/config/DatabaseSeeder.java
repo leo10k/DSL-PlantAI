@@ -1,6 +1,9 @@
 package br.com.dsl.agrogpt.api.config;
 
-import br.com.dsl.agrogpt.api.models.*;
+import br.com.dsl.agrogpt.api.models.Avaliacao;
+import br.com.dsl.agrogpt.api.models.Parceiro;
+import br.com.dsl.agrogpt.api.models.Problema;
+import br.com.dsl.agrogpt.api.models.Telefone;
 import br.com.dsl.agrogpt.api.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -62,13 +64,13 @@ public class DatabaseSeeder implements CommandLineRunner {
         problemaRepository.saveAll(List.of(prob1, prob2, prob3, prob4, prob5));
 
 
-        clienteRepository.saveAll(List.of(
-            Cliente.builder().name("Claudio").genero("Masculino").email("claudio@gmail.com").cpf(11111111111L).cnpj(null).dataNascimento(LocalDate.of(1978, 4, 20)).dataCadastro(LocalDate.of(2020, 7, 13)).status('A').password("claudio123").problema(Collections.singletonList(prob1)).telefone(tel1).build(),
-            Cliente.builder().name("Joao").genero("Masculino").email("joao@gmail.com").cpf(null).cnpj(22222222222222L).dataNascimento(LocalDate.of(1965, 2, 14)).dataCadastro(LocalDate.of(2021, 2, 24)).status('F').password("joao123").problema(Collections.singletonList(prob2)).telefone(tel2).build()
-            //Cliente.builder().name("Amelia").email("amelia@gmail.com").cnpj(33333333333333L).dataNascimento(LocalDate.of(1984, 7, 3)).dataCadastro(LocalDate.of(2022, 10, 22)).build(),
-            //Cliente.builder().name("Jose").email("jose@gmail.com").cnpj(44444444444444L).dataNascimento(LocalDate.of(1985, 11, 15)).dataCadastro(LocalDate.of(2023, 5, 19)).build(),
-            //Cliente.builder().name("Pedro").email("pedro@gmail.com").cnpj(55555555555555L).dataNascimento(LocalDate.of(1987, 7, 11)).dataCadastro(LocalDate.of(2020, 6, 29)).build()
-        ));
+//        clienteRepository.saveAll(List.of(
+//            Cliente.builder().name("Claudio").genero("Masculino").email("claudio@gmail.com").cpf(11111111111L).cnpj(null).dataNascimento(LocalDate.of(1978, 4, 20)).dataCadastro(LocalDate.of(2020, 7, 13)).status('A').password("claudio123").problema(Collections.singletonList(prob1)).telefone(tel1).build(),
+//            Cliente.builder().name("Joao").genero("Masculino").email("joao@gmail.com").cpf(null).cnpj(22222222222222L).dataNascimento(LocalDate.of(1965, 2, 14)).dataCadastro(LocalDate.of(2021, 2, 24)).status('F').password("joao123").problema(Collections.singletonList(prob2)).telefone(tel2).build()
+//            //Cliente.builder().name("Amelia").email("amelia@gmail.com").cnpj(33333333333333L).dataNascimento(LocalDate.of(1984, 7, 3)).dataCadastro(LocalDate.of(2022, 10, 22)).build(),
+//            //Cliente.builder().name("Jose").email("jose@gmail.com").cnpj(44444444444444L).dataNascimento(LocalDate.of(1985, 11, 15)).dataCadastro(LocalDate.of(2023, 5, 19)).build(),
+//            //Cliente.builder().name("Pedro").email("pedro@gmail.com").cnpj(55555555555555L).dataNascimento(LocalDate.of(1987, 7, 11)).dataCadastro(LocalDate.of(2020, 6, 29)).build()
+//        ));
 
     }
 }
