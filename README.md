@@ -6,7 +6,7 @@
 # Apresentações do Projeto
 [Documentação de apresentação DSL³ - Plant AI]("Segue em anexo!")
 
-[Video DSL³ - Plant AI](https://youtu.be/RdKYGiE68Ck "Clique e acesse agora!")
+[Video DSL³ - Plant AI](https://www.youtube.com/watch?v=vrqE2Vf1cSY "Clique e acesse agora!")
 
 ---
 ## Endpoints

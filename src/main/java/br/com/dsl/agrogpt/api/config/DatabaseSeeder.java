@@ -1,7 +1,6 @@
 package br.com.dsl.agrogpt.api.config;
 
 import br.com.dsl.agrogpt.api.models.Avaliacao;
-import br.com.dsl.agrogpt.api.models.Parceiro;
 import br.com.dsl.agrogpt.api.models.Problema;
 import br.com.dsl.agrogpt.api.models.Telefone;
 import br.com.dsl.agrogpt.api.repository.*;
@@ -45,9 +44,9 @@ public class DatabaseSeeder implements CommandLineRunner {
         //telefoneRepository.saveAll(List.of(tel1, tel2, tel3, tel4, tel5));
 
 
-        Parceiro par1 = new Parceiro(null, "Parceiro 1", "descricao", "parceiro1@gmail.com", "parceiro1.com.br", null);
-        Parceiro par2 = new Parceiro(null, "Parceiro 2", "descricao", "parceiro2@gmail.com", "parceiro2.com.br", null);
-        parceiroRepository.saveAll(List.of(par1, par2));
+        //Parceiro par1 = new Parceiro(null, "Parceiro 1", "descricao", "parceiro1@gmail.com", "parceiro1.com.br", null);
+        //Parceiro par2 = new Parceiro(null, "Parceiro 2", "descricao", "parceiro2@gmail.com", "parceiro2.com.br", null);
+        //parceiroRepository.saveAll(List.of(par1, par2));
 
         Avaliacao ava1 = new Avaliacao(null, LocalDate.of(2021, 1, 17), "img1.png", "Concluido", "Solucionado", "95%", null);
         Avaliacao ava2 = new Avaliacao(null, LocalDate.of(2020, 3, 24), "img2.png", "Concluido", "Solucionado", "95%", null);

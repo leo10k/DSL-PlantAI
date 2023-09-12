@@ -8,11 +8,11 @@
 		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.dnl.agrogpt</groupId>
+	<groupId>br.com.dnl.plantai</groupId>
 	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api</name>
-	<description>API Rest da aplicação DNL</description>
+	<description>API Rest da aplicação DSL</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

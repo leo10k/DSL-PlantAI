@@ -30,7 +30,6 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
         var token = getToken(request);
 
-        // se for valido, autenticar
         if (token != null) {
             var cliente = tokenService.valideAndGetUserBy(token);
             Authentication auth = new UsernamePasswordAuthenticationToken(
