@@ -61,7 +61,6 @@ public class ClienteController {
     public ResponseEntity<Cliente> registrer(@RequestBody @Valid Cliente cliente){
         cliente.setPassword(encoder.encode(cliente.getPassword()));
         clienteRepository.save(cliente);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
